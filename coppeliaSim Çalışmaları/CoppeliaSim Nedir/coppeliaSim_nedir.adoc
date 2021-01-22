@@ -1,6 +1,6 @@
 = CoppeliaSim nedir?
 
-Bilgisayarların işlem gücündeki ve 3D grafik kartlarının gelişimi, bol miktarda açık yazılım ve donanım standartları ile birlikte robotik simülasyon ortamlarının geleceğini oldukça değiştirdi. Bu durum masaüstü bilgisayarlarda karmaşıklık yaratmasının yanı sıra, simülasyonları gerçek zamanlı olarak çalıştırma veya bir simülasyon çerçevesinden kontrol edilen mobil / gömülü sistemlere sahip olma yeteneği sağladı.
+Bilgisayarların işlem gücündeki ve 3D grafik kartlarının gelişimi, bol miktarda açık yazılım ve donanım standartları ile birlikte robotik simülasyon ortamlarının geleceğini oldukça değiştirdi. Bu durum masaüstü bilgisayarlarda karmaşıklık yaratmasının yanı sıra, simülasyonları gerçek zamanlı olarak çalıştırma veya bir simülasyon çerçevesinden kontrol edilen mobil / gömülü sistemlere bir arada olabilme yeteneği sağladı.
 
 Çeşitli kinematik, fizik ve grafik kitaplıklarından bir simülatör oluşturmak mümkün olsa da, mimari ve kontrol metodolojisi, bu öğelerin nasıl etkileşime girdiğini ve dolayısıyla sistemin genel performansını ve doğruluğunu belirlemek için çok önemlidir. Sağlam bir sistem yaklaşımı, çok yönlü, ölçeklenebilir ve ayrıntılı bir simülasyon stratejisini savunur.
 
@@ -8,5 +8,43 @@ Pratik olarak, genel amaçlı bir robot simülatörünün, sistem özellikleri �
 
 Open HRP, Gazebo veya Webots şuanda piyasada bulunan robot simülasyon platformlarından bazılarıdır. Bunlardan birçoğu geniş ve tamamlayıcı bir programlama teknikleri paleti sunmada başarısız olur ve simülasyon modelleri ve kontrolörleri sadece kısmen taşınabilir. Farklı bir donanım veya platformda modelin çalıştırılması istendiğinde genellikle yeniden derlenmesi, eşleştirmelerin yeniden yapılması gerekir.
 
+Virtual Robot Experimentation Platform ( Şekil-1 de gösterilen) - veya basitçe V-REP simülatörü - çok yönlü ve ölçeklenebilir bir simülasyon çerçevesine tüm gereksinimleri karşılamaya çalışan bir çabanın sonucudur. Geleneksel simülasyon ortamlarının sunduğu yaklaşımlara ek olarak, V-Rep birkaç yaklaşım daha sunar.
 image::img/vrep.png[Şekil-1 V-Rep üzerinde bir örneğin çalıştırılması]
+
+== Simülasyon Kontrolörleri
+
+Eğer karmaşık büyük bir simülasyon senaryosu oluşturulmak isteniyorsa, dağıtık kontrol çerçevesinden neredeyse hiç kaçış yoktur. Bu sistem CoppeliaSim'in kontrol varlıklarını bölerek basitleştirip ve CPU'da ki yükü birkaç çekirdek ve hatta birkaç makineye dağıtarak azaltabilmesini sağlar. Fakat bu hedefe ulaşmak için unutulmaması gereken gereksinimler vardır.
+
+Bunlar;
+
+  * esneklik,
+  * taşınabilirlik
+  * ölçeklenebilirlik.
+
+Diğer simülasyon kontrol gereksinimleri simülasyon döngüsüne bağlıdır. Bazı unsurlar, özellikle gerçek zamanlı hareket seviyesi kontrolörleri gibi düşük seviyeli kontroller, simülasyon döngüsü ile senkronizasyon gerektirir.
+
+== Ortak teknikler
+
+=== Kontrol kodunu ve simülasyon döngüsünü aynı makinede / threadde yürütme
+
+Bu yaklaşımın ana avantajı, simülasyon döngüsü ile doğal senkronizasyon ve herhangi bir yürütme, iletişim veya iş parçacığı değiştirme gecikmesi veya gecikmesinin olmamasıdır. Ancak bu, yalnızca simülasyon döngüsü CPU çekirdeğindeki artan yük ile mümkün olur. Bu kontrol tekniği genellikle simülatör tarafından yüklenen eklentiler aracılığıyla uygulanır. Yukarıdaki tekniklerin en yaygın uygulamaları (yani, harici yürütülebilir dosyalar veya eklentilerin kullanılması) doğrudan bir sonuç olarak, zayıf taşınabilirliğe ve simülasyon modellerinin zayıf ölçeklenmesine sahiptir: aslında, kontrol kodu, ilgili simülasyon modeline eklenmediğinden, ayrı olarak dağıtılmalı / derlenmeli / kurulmalıdır. Bu, platformlar arasındaki uyumluluk sorunlarını ve diğer kitaplıklarla olan çakışma / bağımlılık sorunlarını artırır. Her küçük kod değişikliği için bir yürütülebilir dosyayı / eklentiyi yeniden derlemek ve yeniden yüklemek gerekeceğinden esneklik de azalır. Bir çoklu robot simülasyon senaryosunda olduğu gibi, model çoğaltma, her simülasyon modeli örneği için yeni kontrol örnekleri başlatan donanımla bağlantılı mekanizmalar aracılığıyla desteklenmelidir.
+
+=== Kontrol kodunu ve simülasyonü döngüsün aynı makinede ancak farklı bir işlemde / threadde yürütme
+
+Burada ayrıca, CPU çekirdeklerinde azaltılmış veya daha dengeli bir yükten faydalanabiliriz, ancak buna simülasyon döngüsü ile senkronizasyon eksikliği eşlik ediyor. Ve çoğu zaman, bir iletişim gecikmesi veya iş parçacığı değiştirme gecikmesi ile birlikte gelir. Bu kontrol tekniği genellikle simülatör tarafından yüklenen harici yürütülebilir dosyalar veya eklentiler aracılığıyla uygulanır.
+
+=== Kontrol kodu başka bir makinede yürütme
+
+Bu, simülatör makinesine belirli bir ağ aracılığıyla bağlanan farklı bir makineyi veya bir robotu temsil edebilir. Aracılığıyla bağlanan farklı bir makineyi veya bir robotu temsil edebilir. Bu yaklaşımın ana avantajı, denetleyicinin orijinalliğidir (kontrol kodu yerel olabilir ve orijinal donanım üzerinde çalışır). Diğer bir avantaj, simülasyon makinesindeki azaltılmış hesaplama yüküdür. Öte yandan, bu yaklaşım simülasyon döngüsü ile senkronizasyon ve ağ tarafından dikte edilen iletişim gecikmesi / gecikmesi açısından ciddi sınırlamalar getirir.
+
+== V-REP implementasyonu
+V-REP, kullanıcının aynı anda (Tablo 1) ve hatta simbiyotik olarak (Şekil 2) çeşitli programlama teknikleri arasından seçim yapmasına izin verir. Bunlar;
+
+ * Embedded scripts,
+ * Add-on,
+ * Plug-ins,
+ * Remote API clients,
+ * ROS nodelarıdır.
+
+ image::img/vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
 
