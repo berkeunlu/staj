@@ -1,0 +1,12 @@
+= CoppeliaSim nedir?
+
+Bilgisayarların işlem gücündeki ve 3D grafik kartlarının gelişimi, bol miktarda açık yazılım ve donanım standartları ile birlikte robotik simülasyon ortamlarının geleceğini oldukça değiştirdi. Bu durum masaüstü bilgisayarlarda karmaşıklık yaratmasının yanı sıra, simülasyonları gerçek zamanlı olarak çalıştırma veya bir simülasyon çerçevesinden kontrol edilen mobil / gömülü sistemlere sahip olma yeteneği sağladı.
+
+Çeşitli kinematik, fizik ve grafik kitaplıklarından bir simülatör oluşturmak mümkün olsa da, mimari ve kontrol metodolojisi, bu öğelerin nasıl etkileşime girdiğini ve dolayısıyla sistemin genel performansını ve doğruluğunu belirlemek için çok önemlidir. Sağlam bir sistem yaklaşımı, çok yönlü, ölçeklenebilir ve ayrıntılı bir simülasyon stratejisini savunur.
+
+Pratik olarak, genel amaçlı bir robot simülatörünün, sistem özellikleri öngörülemediğinden, temeldeki robotik sistemleri ve bunların karmaşıklığını soyutlarken aynı anda çok sayıda araç ve işlevsellik sağlaması gerekir. Ek olarak, taşınabilir ve kolayca kodlanabilen (ve geliştirilebilen); çeşitli modellere yani simülasyon varlıkları birden çok modeli, denetleyiciyi veya herhangi bir işlevselliği desteklemesi istenir.
+
+Open HRP, Gazebo veya Webots şuanda piyasada bulunan robot simülasyon platformlarından bazılarıdır. Bunlardan birçoğu geniş ve tamamlayıcı bir programlama teknikleri paleti sunmada başarısız olur ve simülasyon modelleri ve kontrolörleri sadece kısmen taşınabilir. Farklı bir donanım veya platformda modelin çalıştırılması istendiğinde genellikle yeniden derlenmesi, eşleştirmelerin yeniden yapılması gerekir.
+
+image::img/vrep.png[Şekil-1 V-Rep üzerinde bir örneğin çalıştırılması]
+
