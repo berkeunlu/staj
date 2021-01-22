@@ -47,5 +47,44 @@ V-REP, kullanıcının aynı anda (Tablo 1) ve hatta simbiyotik olarak (Şekil 2
  * Remote API clients,
  * ROS nodelarıdır.
 
-image::img/vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
+image::img/vrep-support-comparison.png[Tablo-1 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
 
+image::img/v-rep-framework.png[Şekil-2 V-Rep çerçevesi]
+
+== Simülasyon İşlevselliği
+
+V-REP, çok yönlü bir mimari etrafında tasarlanmıştır. V-REP'de ana veya merkezi işlev yoktur. Daha ziyade, V-REP, yine bir model bazında gerektiğinde etkinleştirilebilen veya devre dışı bırakılabilen çeşitli nispeten bağımsız işlevlere sahiptir. Endüstriyel bir robotun kutuları alması ve başka bir yere götürmesi gereken bir simülasyon senaryosu hayal edin; VREP, kutuları kavrama ve tutma dinamiklerini hesaplar ve dinamik efektler ihmal edilebilir olduğunda döngünün diğer bölümleri için kinematik bir simülasyon gerçekleştirir.   Bu yaklaşım, endüstriyel robotun hesaplamasını mümkün kılar. tamamen karmaşık dinamik kütüphaneleri kullanılarak simüle edilmiş olsaydı durum böyle olmazdı.
+Robot sert ve sabitse ve çevresinden başka türlü etkilenmiyorsa, bu tür bir hibrit simülasyon bu durumda haklı çıkar.
+
+V-REP, çeşitli işlevselliklerini seçici bir şekilde uyarlamalı bir şekilde etkinleştirmenin yanı sıra, bunları, birinin diğeriyle işbirliği yaparak simbiyotik bir şekilde de kullanabilir. Örneğin bir insansı robot durumunda, VREP bacak hareketlerini, ilk önce her bacak için ters kinematik hesaplayarak; ve sonra hesaplanan eklem konumlarının dinamik modül tarafından hedef eklem konumları olarak kullanılmak üzere atanması. Bu, insansı hareketin çok yönlü bir şekilde belirlenmesine olanak tanır, çünkü her ayağın 6 boyutlu bir yolu takip etmesi gerektiğinden: geri kalan hesaplamalar otomatik olarak yapılır. 
+
+İşlevsellik, belirli sahne nesneleri veya belirli hesaplama modülleri ile ilgilidir, bunların her ikisi de aşağıda açıklanmaktadır.
+
+=== Sahne nesneleri
+
+ * Eklemler
+ * Şekiller
+ * Yakınlık sensörleri
+ * Görüş sensörleri
+ * Kuvvet sensörleri
+ * Grafikler
+ * Kameralar
+ * Işıklar
+ * Yollar
+ * Kuklalar
+ * Frezeler
+
+=== Hesaplama modülleri
+
+ * Kinematik modülü
+ * Dinamik modülü
+ * Çarpışma algılama modülü
+ * Kaplama-kaplama arası mesafe modülü
+ * Yol, hareket planlama modülü
+
+V-REP, çok yönlü ve ölçeklenebilir bir simülasyon çerçevesi olarak tanıtıldı. Denetleyicileri için çok sayıda farklı programlama tekniği sunarak ve simülasyon modellerine denetleyicileri ve işlevleri yerleştirmeye izin vererek, programcıların görevini kolaylaştırır ve kullanıcılar için dağıtım karmaşıklığını azaltır. 
+image::img/delta-kol.png[Şekil 3. V-REP'de Delta Arm manipülatör modeli ]
+
+image::img/yol-planlama.png[Şekil 4. V-REP'de yol planlama insan modeli]
+
+Şu anda V-REP, akademik ve endüstriyel alanda mevcut olan sağlam ve yaygın olarak kullanılan bir robot simülatörü ve denetleyicisine dönüşmüştür. Sistem doğrulama, algoritma optimizasyonu, fabrika otomasyon uygulamalarında karmaşık montaj zincirlerinin simülasyonundan robot görev planlayıcı ve denetleyiciye kadar çeşitli görevleri gerçekleştirir.
