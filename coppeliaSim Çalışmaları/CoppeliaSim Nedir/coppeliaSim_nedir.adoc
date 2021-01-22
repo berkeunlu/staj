@@ -101,4 +101,4 @@ V-REP'in geliştirilmesine 26 Kasım 2019 tarihinde son verilip tüm çabalarım
  * RLBench,
  * Niryo One robotu,
  * Franka Emin Panda robotu,
- ve bazı fonksiyonlardır
+ ve bazı fonksiyonlardır.
