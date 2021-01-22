@@ -9,7 +9,7 @@ Pratik olarak, genel amaçlı bir robot simülatörünün, sistem özellikleri �
 Open HRP, Gazebo veya Webots şuanda piyasada bulunan robot simülasyon platformlarından bazılarıdır. Bunlardan birçoğu geniş ve tamamlayıcı bir programlama teknikleri paleti sunmada başarısız olur ve simülasyon modelleri ve kontrolörleri sadece kısmen taşınabilir. Farklı bir donanım veya platformda modelin çalıştırılması istendiğinde genellikle yeniden derlenmesi, eşleştirmelerin yeniden yapılması gerekir.
 
 Virtual Robot Experimentation Platform ( Şekil-1 de gösterilen) - veya basitçe V-REP simülatörü - çok yönlü ve ölçeklenebilir bir simülasyon çerçevesine tüm gereksinimleri karşılamaya çalışan bir çabanın sonucudur. Geleneksel simülasyon ortamlarının sunduğu yaklaşımlara ek olarak, V-Rep birkaç yaklaşım daha sunar.
-image::img/vrep.png[Şekil-1 V-Rep üzerinde bir örneğin çalıştırılması]
+image::/img/vrep.png[Şekil-1 V-Rep üzerinde bir örneğin çalıştırılması]
 
 == Simülasyon Kontrolörleri
 
@@ -46,5 +46,5 @@ V-REP, kullanıcının aynı anda (Tablo 1) ve hatta simbiyotik olarak (Şekil 2
  * Remote API clients,
  * ROS nodelarıdır.
 
- image::img/vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
+ image::/img/vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
 
