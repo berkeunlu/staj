@@ -47,5 +47,5 @@ V-REP, kullanıcının aynı anda (Tablo 1) ve hatta simbiyotik olarak (Şekil 2
  * Remote API clients,
  * ROS nodelarıdır.
 
-image::C:\github_repos\staj\coppeliaSim Çalışmaları\CoppeliaSim Nedir\img\vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
+image::img/vrep-support-comparison.png[Tablo-2 V-Rep'de desteklenen beş programlama tekniğinin karşılaştırması]
 
