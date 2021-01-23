@@ -1,5 +1,29 @@
 = CoppeliaSim nedir?
 
+== Genel özellikler
+
+CoppeliaSim, robot simülatörleri arasında tam bir "İsviçre çakısı"dır; daha fazla fonksiyon içeren, daha özellikli ve bu kadar çok özel API içeren bir simülatör daha bulamazsınız:
+
+ * Çapraz platform (Windows, MacOS, Linux)
+ * 6 programlama yaklaşımı (gömülü script'ler, plugin'ler, add-on'lar, ROS node'lar, uzak API ,BlueZero node'lar)
+ * 6 programlama dili (C/C++, Python, Java, Lua, Matlab ve Octave)
+ * 400'den fazla farklı API fonksiyonu
+ * 4 fizik motoru (ODE, Bullet, Vortex, Newton)
+ * Integrated ray-tracer (POV-Ray)
+ * Tam kinematik çözücü (Herhangi bir mekanizma için Ters Kinematik ve İleri Kinematik)
+ * Sayısal ağlar arası girişim tespiti (meshes, OC trees and point clouds)
+ * Sayısal ağlar arası en kısa mesafe tespiti (meshes, OC trees and point clouds)
+ * Güzergah planlama (2-6 boyutta holonomik, taşıt benzeri yapılar için holonomik olmayan)
+ * Entegre görüntü işleme özelliğine sahip (tamamen genişletilebilir) görüntü sensörleri
+ * Gerçekçi mesafe sensörleri (algılama hacmi içerisinde en kısa mesafe hesaplaması)
+ * Entegre özelleştirilmiş kullanıcı arayüzleri
+ * Tamamen entegre Reflexxes Hareket Kütüphanesi tip 2 + RRS-1 interface specifications
+ * Veri kaydetme ve görselleştirme (zaman grafiği, X/Y grafiği veya 3B eğriler)
+ * Entegre şekil düzenleme modları
+ * Su ve hava jeti simülasyonları için dinamik partiküller
+ * Sürükle-bırak fonksiyonuna sahip Model Listeleyici (simülasyon esnasinda da aktif)
+ * Çoklu geri al/yinele, video kaydedici, boyama simülasyonu, detaylı dokümantasyon, vb.
+
 Bilgisayarların işlem gücündeki ve 3D grafik kartlarının gelişimi, bol miktarda açık yazılım ve donanım standartları ile birlikte robotik simülasyon ortamlarının geleceğini oldukça değiştirdi. Bu durum masaüstü bilgisayarlarda karmaşıklık yaratmasının yanı sıra, simülasyonları gerçek zamanlı olarak çalıştırma veya bir simülasyon çerçevesinden kontrol edilen mobil / gömülü sistemlere bir arada olabilme yeteneği sağladı.
 
 Çeşitli kinematik, fizik ve grafik kitaplıklarından bir simülatör oluşturmak mümkün olsa da, mimari ve kontrol metodolojisi, bu öğelerin nasıl etkileşime girdiğini ve dolayısıyla sistemin genel performansını ve doğruluğunu belirlemek için çok önemlidir. Sağlam bir sistem yaklaşımı, çok yönlü, ölçeklenebilir ve ayrıntılı bir simülasyon stratejisini savunur.
